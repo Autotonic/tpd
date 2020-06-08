@@ -82,10 +82,14 @@ class Download(object):
 
 
 if __name__ == "__main__":
-    url = sys.argv[2]
-    size = sys.argv[1]
-    if (url or size) is None or size.isdigit() is False:
+    try:
+        url = sys.argv[2]
+        size = sys.argv[1]
+    except:
         sys.exit(__doc__)
     else:
-        dl = Download(url, int(size))
-        dl.run()
+        if size.isdigit() is False:
+            sys.exit(__doc__)
+        else:
+            dl = Download(url, int(size))
+            dl.run()
